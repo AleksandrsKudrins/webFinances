@@ -1,0 +1,64 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Aleksandrs" id="01">
+		<createTable remarks="Used to store user's information"
+			tableName="users">
+			<column name="id" type="varchar2(50)">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="description" type="varchar(250)" />
+			<column name="email" type="varchar(250)" />			
+			<column name="status" type="varchar(10)" />
+		</createTable>
+
+		<createTable remarks="Used to store user order information"
+			tableName="orders">
+			<column name="id" type="varchar(50)">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="po_number" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="description" type="varchar(250)" />
+			<column name="user_id" type="varchar(50)" />
+			<column name="sum" type="float" />
+			<column name="status" type="varchar(25)" />
+		</createTable>
+
+		<createTable remarks="Used to store balances information"
+			tableName="balances">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="user_id" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="open_balance" type="float" />
+			<column name="negative_flag" type="varchar(1)" />
+			<column name="status" type="varchar(25)" />
+			<column name="credit_limit" type="int" />
+		</createTable>
+
+		<createTable remarks="Used to store transactions information"
+			tableName="transactions">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="balance_id" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="po_id" type="int" />
+			<column name="type" type="varchar(50)" />
+			<column name="amount" type="float" />
+			<column name="status" type="varchar(25)" />
+			<column name="description" type="varchar(500)" />
+		</createTable>
+
+	</changeSet>
+</databaseChangeLog>
