@@ -3,6 +3,7 @@ package ak.webFinances.dto;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,24 +14,25 @@ public class Orders {
 	@Column (name ="po_number")
 	private String poNumber;
 	private String description;
-	@Column (name = "user_id")
-	private String userId;
 	private float sum;
 	private String status;
+	
+	@ManyToOne
+	private Users user;
 	
 	public Orders() {
 		
 	}
 	
-	public Orders(String id, String poNumber, String description, String userId, float sum, String status) {
+	public Orders(String id, String poNumber, String description, float sum, String status, String userId) {
 		super();
 		
 		this.id = id;
 		this.poNumber = poNumber;
 		this.description = description;
-		this.userId = userId;
 		this.sum = sum;
 		this.status = status;
+		this.user = new Users(userId, "", "", "", "");
 	}
 
 	public String getId() {
@@ -57,14 +59,6 @@ public class Orders {
 		this.description = description;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public float getSum() {
 		return sum;
 	}
@@ -79,6 +73,14 @@ public class Orders {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 	
 }

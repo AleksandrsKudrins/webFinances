@@ -22,11 +22,11 @@
 			<column name="id" type="varchar(50)">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
+			<column name="user_id" type="varchar(250)" />
 			<column name="po_number" type="varchar(50)">
 				<constraints nullable="false" />
 			</column>
 			<column name="description" type="varchar(250)" />
-			<column name="user_id" type="varchar(50)" />
 			<column name="sum" type="float" />
 			<column name="status" type="varchar(25)" />
 		</createTable>

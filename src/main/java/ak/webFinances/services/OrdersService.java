@@ -13,10 +13,10 @@ public class OrdersService {
 	@Autowired
 	private OrdersRepository ordersRepository;
 	
-	public List<Orders> getAllOrders(){
+	public List<Orders> getAllOrders(String userId){
 		List<Orders> orders = new ArrayList<>();
 		
-		ordersRepository.findAll()
+		ordersRepository.findByUserId(userId)
 		.forEach(orders ::add);
 		
 		return orders;
@@ -30,7 +30,7 @@ public class OrdersService {
 		return ordersRepository.findOne(id);
 	}
 	
-	public void updateOrder(String id, Orders order) {
+	public void updateOrder(Orders order) {
 		ordersRepository.save(order);
 	}
 	

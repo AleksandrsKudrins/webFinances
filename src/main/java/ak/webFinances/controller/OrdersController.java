@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ak.webFinances.dto.Orders;
+import ak.webFinances.dto.Users;
 import ak.webFinances.services.OrdersService;
 
 @RestController
@@ -17,27 +18,29 @@ public class OrdersController {
 	@Autowired
 	private OrdersService orderService;
 	
-	@RequestMapping("/orders")
-	public List<Orders> getAllOrders() {
-		return orderService.getAllOrders();
+	@RequestMapping("/users/{id}/orders")
+	public List<Orders> getAllOrders(@PathVariable String id) {
+		return orderService.getAllOrders(id);
 	}
 	
-	@RequestMapping("/orders/{id}")
+	@RequestMapping("/users/{userId}/orders/{id}")
 	public Orders getOrder(@PathVariable String id) {
 		return orderService.getOrder(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/orders")
-	public void addTopic(@RequestBody Orders order) {
+	@RequestMapping(method=RequestMethod.POST, value="/users/{userId}/orders")
+	public void addTopic(@RequestBody Orders order, @PathVariable String userId) {
+		order.setUser(new Users(userId, "", "", "", ""));
 		orderService.addOrder(order);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/orders/{id}")
-	public void updateTopic(@RequestBody Orders order, @PathVariable String id) {
-		orderService.updateOrder(id, order);
+	@RequestMapping(method=RequestMethod.PUT, value="/users/{userId}/orders/{id}")
+	public void updateTopic(@RequestBody Orders order,@PathVariable String userId, @PathVariable String id) {
+		order.setUser(new Users(userId, "", "", "", ""));
+		orderService.updateOrder(order);
 	}	
 	
-	@RequestMapping(method=RequestMethod.DELETE, value="/orders/{id}")
+	@RequestMapping(method=RequestMethod.DELETE, value="/users/{userId}/orders/{id}")
 	public void deleteTopic(@RequestBody Orders order, @PathVariable String id) {
 		orderService.deleteOrder(id, order);
 	}		
