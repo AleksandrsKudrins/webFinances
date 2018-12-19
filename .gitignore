@@ -1,1 +1,6 @@
 application.properties
+gradle.bat
+gradlew
+.settings
+.gradle
+.project

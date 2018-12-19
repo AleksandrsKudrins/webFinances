@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ak.webFinances.dto.Orders;
-import ak.webFinances.dto.Users;
+import ak.webFinances.model.Orders;
+import ak.webFinances.model.Users;
 import ak.webFinances.services.OrdersService;
 
 @RestController

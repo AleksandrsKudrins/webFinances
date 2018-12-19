@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ak.webFinances.dto.Users;
+import ak.webFinances.model.Users;
 
 @Service
 public class UsersService {

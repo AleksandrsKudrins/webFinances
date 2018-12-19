@@ -1,4 +1,4 @@
-package ak.webFinances.dto;
+package ak.webFinances.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
