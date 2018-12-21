@@ -36,12 +36,13 @@
 			<column name="id" type="int">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="user_id" type="int">
+			<column name="user_id" type="varchar(50)">
 				<constraints nullable="false" />
 			</column>
 			<column name="open_balance" type="float" />
 			<column name="negative_flag" type="varchar(1)" />
 			<column name="status" type="varchar(25)" />
+			<column name="last_update_date" type="varchar(25)" />
 			<column name="credit_limit" type="int" />
 		</createTable>
 

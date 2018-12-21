@@ -29,19 +29,19 @@ public class OrdersController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/users/{userId}/orders")
-	public void addTopic(@RequestBody Orders order, @PathVariable String userId) {
+	public void addOrder(@RequestBody Orders order, @PathVariable String userId) {
 		order.setUser(new Users(userId, "", "", "", ""));
 		orderService.addOrder(order);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/users/{userId}/orders/{id}")
-	public void updateTopic(@RequestBody Orders order,@PathVariable String userId, @PathVariable String id) {
+	public void updateOrder(@RequestBody Orders order,@PathVariable String userId, @PathVariable String id) {
 		order.setUser(new Users(userId, "", "", "", ""));
 		orderService.updateOrder(order);
 	}	
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/users/{userId}/orders/{id}")
-	public void deleteTopic(@RequestBody Orders order, @PathVariable String id) {
+	public void deleteOrder(@RequestBody Orders order, @PathVariable String id) {
 		orderService.deleteOrder(id, order);
 	}		
 }

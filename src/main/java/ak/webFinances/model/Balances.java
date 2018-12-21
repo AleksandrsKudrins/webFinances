@@ -1,43 +1,50 @@
 package ak.webFinances.model;
 
-import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table (name = "balances")
 public class Balances {
-	
-	private int id;
-	private int userId;
+	@Id
+	private String id;
+	@Column (name = "open_balance")
 	private float openBalance;
+	@Column (name = "negative_flag")
 	private String negativeFlag;
-	private Date lastUpdateDate;
+	@Column (name = "last_update_date")
+	private String lastUpdateDate;
 	private String status;
 	private int creditLimit;
 	
-	public Balances(int id, int userId, float openBalance, String negativeFlag, Date lastUpdateDate, String status, int creditLimit) {
+	@OneToOne
+	private Users user;
+	
+	public Balances() {
+		
+	}
+	
+	public Balances(String id, float openBalance, String negativeFlag, String lastUpdateDate, String status, int creditLimit, String userId) {
 		super();
 		
 		this.id = id;
-		this.userId = userId;
 		this.openBalance = openBalance;
 		this.negativeFlag = negativeFlag;
 		this.lastUpdateDate = lastUpdateDate;
 		this.status = status;
 		this.creditLimit = creditLimit;
+		this.user = new Users(userId, "", "", "", "");
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public float getOpenBalance() {
@@ -56,11 +63,11 @@ public class Balances {
 		this.negativeFlag = negativeFlag;
 	}
 
-	public Date getLastUpdateDate() {
+	public String getLastUpdateDate() {
 		return lastUpdateDate;
 	}
 
-	public void setLastUpdateDate(Date lastUpdateDate) {
+	public void setLastUpdateDate(String lastUpdateDate) {
 		this.lastUpdateDate = lastUpdateDate;
 	}
 
@@ -79,6 +86,13 @@ public class Balances {
 	public void setCreditLimit(int creditLimit) {
 		this.creditLimit = creditLimit;
 	}
-	
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
 	
 }
